@@ -25,7 +25,7 @@ function App() {
       <div className="form">
         <input onChange={handleChange} type="text" value={inputText} />
         <button onClick={addItem}>
-          <span>Add</span>
+          <span>Add Item</span>
         </button>
       </div>
       <div>
