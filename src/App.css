@@ -1,5 +1,6 @@
 body {
-  background-color: #5cdade;
+  background-color: #cc8800;
+  background-image: url(http://www.transparenttextures.com/patterns/rebel.png);
   min-height: 70vh;
   padding: 1rem;
   box-sizing: border-box;
@@ -75,4 +76,16 @@ li {
   text-align: left;
   position: relative;
   padding: 0.5rem;
+}
+
+.todo-list {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.todo-list button {
+  padding: 5px;
+  border: 1px solid;
+  cursor: pointer;
 }

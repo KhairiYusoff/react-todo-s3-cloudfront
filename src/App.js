@@ -1,23 +1,26 @@
 import './App.css';
 import { useState } from 'react';
+import CreateToDoList from './CreateToDoList';
+import ToDoListItems from './ToDoListItems';
 
 function App() {
 
-  //To save the state of inputText when there is a change, initial state set to blank ""
-  const [inputText, setInputText] = useState("");
   //To hold the value of an array of items, initial state is set to empty [] 
   const [items, setItems] = useState([]);
 
-  function handleChange(event) {
-    //Hold the value of the inputText from user
-    setInputText(event.target.value);
-  }
-
-  function addItem() {
+  function addItem(inputText) {
     setItems(prevItems => {
       return [...prevItems, inputText];
     })
-    setInputText("");
+  }
+
+  function deleteItem(id) {
+    setItems(prevItems => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+
   }
 
   return (
@@ -26,16 +29,17 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input onChange={handleChange} type="text" value={inputText} />
-        <button onClick={addItem}>
-          <span>Add Item</span>
-        </button>
-      </div>
+      <CreateToDoList
+        onAdd={addItem} />
       <div>
         <ul>
-          {items.map((todoItem) => ( //mapping through each of the item and return a list of items being added
-            <li>{todoItem}</li>
+          {items.map((todoItem, index) => ( //mapping through each of the item and return a list of items being added
+            <ToDoListItems
+              id={index}
+              key={index}
+              todoItem={todoItem}
+              onDelete={deleteItem}
+            />
           ))}
         </ul>
       </div>
